@@ -1,0 +1,32 @@
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            {% if user.is_authenticated %}
+                <i class="fa fa-user-circle-o"></i>
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">{{ user.first_name }} {{ user.last_name }}</span>
+                </li>
+                <li>
+                    <a href="{% url 'users:logout' %}">
+                        <i class="fa fa-sign-out"></i>
+                        Cerrar Sesión
+                    </a>
+                </li>
+            {% else %}
+                <i class="fa fa-info-circle"></i>
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">¿No tiene una cuenta?</span>
+                </li>
+                <li>
+                    <a href="{% url 'users:register' %}">
+                        <i class="fa fa-sign-out"></i>
+                        Crear una cuenta
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>

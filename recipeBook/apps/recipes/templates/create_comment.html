@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load static from staticfiles %}
+
+{% block title %}
+    RecipeBoook
+{% endblock title %}
+
+{% block content %}
+
+    <div id="wrapper">
+        
+        {% include "navbar.html" %}
+        
+        <div id="page-wrapper" class="gray-bg">
+
+            {% include "rowbutton.html" %}
+            {% if user.is_authenticated %}
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Crear Comentario</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="{% url 'main:home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a>Comentarios</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'recipes:detail_recipe' recipeItem.id %}">Receta</a>
+                        </li>
+                        <li class="active">
+                            <strong>Crear Comentario</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+
+                            <div class="ibox-title">
+                                <h5>Crear Comentario</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <!--
+                                            <li>
+                                                <a href="#">Config option 1</a>
+                                            </li>
+                                        -->
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="ibox-content">
+                                <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                    <div class="form-group"><label class="col-sm-2 control-label">Comentario</label>
+                                        <div class="col-sm-10">
+                                            {{ form.content }}
+                                            {% if form.errors %}
+                                                <div class="alert alert-danger" id="alertMessages" role="alert">
+                                                    {{ form.content.errors }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-2">
+                                            <button class="btn btn-primary" type="submit">Crear Comentario</button>
+                                            <a class="btn btn-w-m btn-default" href="{% url 'recipes:list_recipe' %}">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endif %}
+            {% include "footer.html" %}
+
+        </div>
+    </div>
+
+{% endblock content %}
