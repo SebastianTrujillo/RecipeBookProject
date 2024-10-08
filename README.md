@@ -1,2 +1,2 @@
 # RecipeBookProject
-(Django Project) - Aplicación web para la gestión de recetas
+(Django Project) - Web application for recipe management
